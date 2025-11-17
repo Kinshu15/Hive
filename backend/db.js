@@ -12,7 +12,7 @@ async function connectDB() {
     await client.connect();
     console.log("MongoDB Connected");
 
-    db = client.db("sample_mflix");   // use sample database
+    db = client.db("Hive");   // use sample database
 
   } catch (err) {
     console.error("DB Connection Error:", err);
