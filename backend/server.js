@@ -11,7 +11,7 @@ const app = express();
 app.use(express.json());
 app.options("*", cors());
 app.use(cors({
-  origin: ["http://localhost:3000","https://hive-blow.onrender.com"],
+  origin: ["https://hive-blow.onrender.com"],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
