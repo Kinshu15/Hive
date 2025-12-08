@@ -10,6 +10,7 @@ import {
   CardContent,
   Typography,
 } from "@mui/material";
+import Link from "next/link";
 
 export default function LoginPage() {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -23,7 +24,7 @@ export default function LoginPage() {
     e.preventDefault();
 
     try {
-      const res = await axios.post(`${API}/login`, {
+      const res = await axios.post(`${API}/auth/login`, {
         email: form.email,
         password: form.password,
       });
@@ -31,7 +32,7 @@ export default function LoginPage() {
       localStorage.setItem("token", res.data.token);
 
       setMessage("Login successful!");
-      window.location.href = "/success";
+      window.location.href = "/home";
     } catch (err) {
       setMessage(err.response?.data?.error || "Login failed");
     }
@@ -68,6 +69,10 @@ export default function LoginPage() {
             <Button variant="contained" fullWidth sx={{ mt: 2 }} type="submit">
               Login
             </Button>
+
+            <Typography variant="body2" align="center" sx={{ mt: 2 }}>
+              Don't have an account? <Link href="/auth/signup" className="text-blue-600 hover:underline">Signup</Link>
+            </Typography>
           </form>
         </CardContent>
       </Card>

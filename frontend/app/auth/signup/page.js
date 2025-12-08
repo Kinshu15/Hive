@@ -10,6 +10,7 @@ import {
   CardContent,
   Typography,
 } from "@mui/material";
+import Link from "next/link";
 
 export default function SignupPage() {
   const [form, setForm] = useState({ username: "", email: "", password: "" });
@@ -23,10 +24,10 @@ export default function SignupPage() {
     e.preventDefault();
 
     try {
-      await axios.post(`${API}/signup`, form);
+      await axios.post(`${API}/auth/signup`, form);
       setMessage("Signup successful!");
 
-      window.location.href = "/login";
+      window.location.href = "/auth/login";
     } catch (err) {
       setMessage(err.response?.data?.error || "Signup failed");
     }
@@ -43,7 +44,7 @@ export default function SignupPage() {
           <form onSubmit={handleSubmit}>
             <TextField
               fullWidth
-              label="Name"
+              label="UserName"
               name="username"
               value={form.username}
               margin="normal"
@@ -72,6 +73,10 @@ export default function SignupPage() {
             <Button variant="contained" type="submit" fullWidth sx={{ mt: 2 }}>
               Signup
             </Button>
+
+            <Typography variant="body2" align="center" sx={{ mt: 2 }}>
+              Already have an account? <Link href="/auth/login" className="text-blue-600 hover:underline">Login</Link>
+            </Typography>
           </form>
 
           <Typography className="text-red-500 mt-3 text-center">
