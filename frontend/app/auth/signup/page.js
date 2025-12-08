@@ -22,7 +22,6 @@ export default function SignupPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       await axios.post(`${API}/auth/signup`, form);
       setMessage("Signup successful!");
